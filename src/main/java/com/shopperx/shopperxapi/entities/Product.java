@@ -1,4 +1,4 @@
-package com.shopperx.shopperxapi.models;
+package com.shopperx.shopperxapi.entities;
 
 public class Product {
 }
