@@ -2,19 +2,22 @@ package com.shopperx.shopperxapi.filters;
 
 import java.io.IOException;
 
-import jakarta.servlet.Filter;
+import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-public class LoggingFilter implements Filter{
+@Component
+public class LoggingFilter extends OncePerRequestFilter{
+
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {  
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        System.out.println("the servlet request parsed" + httpRequest.getRequestURI());
+    public void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {  
+        System.out.println("the servlet request parsed" + request.getRequestURI());
         filterChain.doFilter(request, response);
+     
     }
 
 }
